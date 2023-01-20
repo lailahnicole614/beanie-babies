@@ -35,6 +35,19 @@
             <h1>Web App</h1>
         </header>
 
-        <main></main>
+        <main>
+            <section class="search">
+                <h2>Search Beanie Babies by Astrology</h2>
+                <form id="search-form">
+                    <label for="astrosign-select">Select a Sign: </label>
+                    <select id="astrosign-select" name="sign">
+                        <option value="">All Signs</option>
+                    </select>
+                    <button type="submit" aria-label="submit-search">🔍</button>
+                </form>
+            </section>
+
+            <ul class="list" id="baby-list" aria-live="polite"></ul>
+        </main>
     </body>
 </html>
