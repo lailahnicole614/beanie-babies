@@ -4,14 +4,12 @@ const SUPABASE_KEY =
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// export async functions that fetch data
-
-export async function getBabies(signUserSelected) {
-    if (signUserSelected) {
+export async function getBeanieBabies(signTheUserSelected) {
+    if (signTheUserSelected) {
         let { data, error } = await client
             .from('beanie_babies')
             .select('*')
-            .eq('astroSign', signUserSelected)
+            .eq('astroSign', signTheUserSelected)
             .limit(100);
 
         return data;
@@ -22,7 +20,7 @@ export async function getBabies(signUserSelected) {
     return data;
 }
 
-export async function getSign() {
+export async function getZodiac() {
     let { data, error } = await client.from('beanie_baby_astro_signs').select('*');
 
     return data;

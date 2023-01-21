@@ -31,10 +31,34 @@ window.addEventListener('load', async () => {
     }
 });
 
-selectionForm.addEventListener('submit', () => {});
+selectionFormEl.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const filteredBeanies = await getBeanieBabies(selectEl.value);
+
+    beanieBabiesData = filteredBeanies;
+
+    displayBeanieBabies();
+});
+
 /* Display Functions */
 
-function displayBeanieBabies() {}
+function displayBeanieBabies() {
+    beanieBabiesEl.textContent = '';
+
+    for (let beanieBaby of beanieBabiesData) {
+        const beanieBabyEl = document.createElement('div');
+        const wordsEl = document.createElement('p');
+        const imgEl = document.createElement('img');
+
+        wordsEl.textContent = `${beanieBaby.title} is a ${beanieBaby.astroSigns} and was born on ${beanieBaby.birthday}`;
+        imgEl.src = beanieBaby.image;
+
+        beanieBabyEl.classList.add('beanie-baby');
+        beanieBabyEl.append(wordsEl, imgEl);
+        beanieBabiesEl.append(beaniebabyEl);
+    }
+}
 
 function displayAstroSigns() {}
 
