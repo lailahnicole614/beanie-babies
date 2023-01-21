@@ -1,8 +1,10 @@
 /* Imports */
 import { getBeanieBabies } from './fetch-utils.js';
+import { renderBeanieBabies } from './render-utils.js';
+
 /* Get DOM Elements get zodiac*/
 /* CSS selector goes here, anything you can point to in CSS is a valid argument in querySelector */
-// const beanieBabiesEl = document.querySelector('.beanie-babies');
+const beanieBabiesEl = document.querySelector('.beanie-babies');
 // const selectEl = document.querySelector('select');
 // const buttonEl = document.querySelector('button');
 // const formEl = document.querySelector('form');
@@ -20,7 +22,7 @@ window.addEventListener('load', async () => {
     console.log(beanies);
     // 2 append beanie babies els to section (using fetched data) (displayBeanieBabies())
 
-    // displayBeanieBabies();
+    displayBeanieBabies();
 
     // const signs = await getZodiac();
 
@@ -57,21 +59,11 @@ window.addEventListener('load', async () => {
 
 // /* Display Functions */
 
-// function displayBeanieBabies() {
-//     beanieBabiesEl.textContent = '';
+function displayBeanieBabies() {
+    beanieBabiesEl.textContent = '';
 
-//     for (let beanieBaby of beanieBabiesData) {
-//         const beanieBabyEl = document.createElement('div');
-//         const wordsEl = document.createElement('p');
-//         const imgEl = document.createElement('img');
-
-//         wordsEl.textContent = `${beanieBaby.title} is a ${beanieBaby.astroSign} and was born on ${beanieBaby.birthday}`;
-//         imgEl.src = beanieBaby.image;
-
-//         beanieBabyEl.classList.add('beanie-baby');
-
-//         beanieBabyEl.append(wordsEl, imgEl);
-
-//         beanieBabiesEl.append(beanieBabyEl);
-//     }
-// }
+    for (let beanieBaby of beanieBabies) {
+        const beanieBabyEl = renderBeanieBabies(beanieBaby);
+        beanieBabiesEl.append(beanieBabyEl);
+    }
+}
