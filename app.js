@@ -1,65 +1,77 @@
 /* Imports */
-import { getBeanieBabies, getSignOption } from './fetch-utils.js';
-/* Get DOM Elements */
-const beanieBabiesEl = document.querySelector('.beanie-babies');
-//dropdown and button
-const selectEl = document.querySelector('select');
-const buttonEl = document.querySelector('button');
-const selectionFormEl = document.querySelector('selection-form');
+import { getBeanieBabies } from './fetch-utils.js';
+/* Get DOM Elements get zodiac*/
+/* CSS selector goes here, anything you can point to in CSS is a valid argument in querySelector */
+// const beanieBabiesEl = document.querySelector('.beanie-babies');
+// const selectEl = document.querySelector('select');
+// const buttonEl = document.querySelector('button');
+// const formEl = document.querySelector('form');
 
 /* State */
+// i add Data to this name so we don't confuse it for the DOM element beanieBabiesEl
 let beanieBabies = [];
-let astroSigns = [];
 
 /* Events */
 window.addEventListener('load', async () => {
-    const response = await getBeanieBabies();
+    // 1) request list of beanie babies
+    const beanies = await getBeanieBabies();
 
-    beanieBabiesData = beanies;
+    beanieBabies = beanies;
+    console.log(beanies);
+    // 2 append beanie babies els to section (using fetched data) (displayBeanieBabies())
 
-    displayBeanieBabies();
+    // displayBeanieBabies();
 
-    const signs = await getSignOption();
+    // const signs = await getZodiac();
 
-    for (let sign of signs) {
-        const optionEl = document.createElement('option');
+    // for (let sign of signs) {
+    //     const optionEl = document.createElement('option');
 
-        optionEl.value = sign.name;
-        optionEl.textContent = sign.name;
+    //     optionEl.value = sign.name;
+    //     optionEl.textContent = sign.name;
 
-        selectEl.append(optionEl);
-    }
+    //     selectEl.append(optionEl);
+    // }
 });
 
-selectionFormEl.addEventListener('submit', async (e) => {
-    e.preventDefault();
+// old event listening on click
+// buttonEl.addEventListener('click', async () =>{
+//     const filteredBeanies = await getBeanieBabies(selectEl.value);
 
-    const filteredBeanies = await getBeanieBabies(selectEl.value);
+//     beanieBabiesData = filteredBeanies;
 
-    beanieBabiesData = filteredBeanies;
+//     displayBeanieBabies();
+// });
 
-    displayBeanieBabies();
-});
+// new event listening on form submit
+// formEl.addEventListener('submit', async (e) => {
+//     // just how it is--forms don't work without this line
+//     e.preventDefault();
 
-/* Display Functions */
+//     const filteredBeanies = await getBeanieBabies(selectEl.value);
 
-function displayBeanieBabies() {
-    beanieBabiesEl.textContent = '';
+//     beanieBabiesData = filteredBeanies;
 
-    for (let beanieBaby of beanieBabiesData) {
-        const beanieBabyEl = document.createElement('div');
-        const wordsEl = document.createElement('p');
-        const imgEl = document.createElement('img');
+//     displayBeanieBabies();
+// });
 
-        wordsEl.textContent = `${beanieBaby.title} is a ${beanieBaby.astroSigns} and was born on ${beanieBaby.birthday}`;
-        imgEl.src = beanieBaby.image;
+// /* Display Functions */
 
-        beanieBabyEl.classList.add('beanie-baby');
-        beanieBabyEl.append(wordsEl, imgEl);
-        beanieBabiesEl.append(beaniebabyEl);
-    }
-}
+// function displayBeanieBabies() {
+//     beanieBabiesEl.textContent = '';
 
-function displayAstroSigns() {}
+//     for (let beanieBaby of beanieBabiesData) {
+//         const beanieBabyEl = document.createElement('div');
+//         const wordsEl = document.createElement('p');
+//         const imgEl = document.createElement('img');
 
-// (don't forget to call any display functions you want to run on page load!)
+//         wordsEl.textContent = `${beanieBaby.title} is a ${beanieBaby.astroSign} and was born on ${beanieBaby.birthday}`;
+//         imgEl.src = beanieBaby.image;
+
+//         beanieBabyEl.classList.add('beanie-baby');
+
+//         beanieBabyEl.append(wordsEl, imgEl);
+
+//         beanieBabiesEl.append(beanieBabyEl);
+//     }
+// }
